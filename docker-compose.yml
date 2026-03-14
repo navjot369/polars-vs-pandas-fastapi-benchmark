@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  pandas_service:
+    build: ./services/pandas_app
+    volumes:
+      - ./data:/app/data:ro  # Read-only mount of the dataset
+    ports:
+      - "8000:8000"
+    deploy:
+      resources:
+        limits:
+          cpus: '2.0'
+          memory: 2G
+
+  polars_service:
+    build: ./services/polars_app
+    volumes:
+      - ./data:/app/data:ro
+    ports:
+      - "8001:8001"
+    deploy:
+      resources:
+        limits:
+          cpus: '2.0'
+          memory: 2G
